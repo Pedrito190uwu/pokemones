@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { PokemonComponent } from './pokemon/Components/pokemon-components';
+import { PokemonComponent } from './pokemon/Components/pokemon-list.components';
 import { HttpClientModule } from '@angular/common/http';
 
 imports: [
