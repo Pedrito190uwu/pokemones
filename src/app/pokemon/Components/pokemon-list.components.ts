@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { forkJoin } from 'rxjs';
 import { PokemonService } from '../services/pokemon-services';
-import { Pokemon } from '../models/pokemon-models';
+import { Pokemon, PokemonBasic } from '../models/pokemon-models';
+
 @Component({
   selector: 'app-pokemon-list',
   standalone: true,
+  imports: [CommonModule],
   templateUrl: './pokemon-list.components.html',
   styleUrls: ['./pokemon-list.components.scss']
 })
@@ -22,21 +25,12 @@ export class PokemonListComponent implements OnInit {
 
     this.pokemonService.getPokemons().subscribe(response => {
 
-      const peticiones = response.results.map(pokemon =>
+      const peticiones = response.results.map((pokemon: PokemonBasic) =>
         this.pokemonService.getPokemonDetail(pokemon.url)
       );
 
-      forkJoin(peticiones).subscribe((detalles: any[]) => {
-
-        this.pokemons = detalles.map(pokemon => ({
-          id: pokemon.id,
-          name: pokemon.name,
-          image: pokemon.sprites.other['official-artwork'].front_default,
-          height: pokemon.height,
-          weight: pokemon.weight,
-          types: pokemon.types.map((t: any) => t.type.name)
-        }));
-
+      forkJoin(peticiones).subscribe((detalles: Pokemon[]) => {
+        this.pokemons = detalles;
       });
 
     });

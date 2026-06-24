@@ -3,10 +3,10 @@ import { PokemonListComponent } from './pokemon/Components/pokemon-list.componen
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.html',
-  styleUrls: ['./app.scss'],
   standalone: true,
-  imports: [PokemonListComponent]
+  imports: [PokemonListComponent],
+  templateUrl: './app.html',
+  styleUrls: ['./app.scss']
 })
 export class AppComponent {
   protected readonly title = signal('pokemon');
