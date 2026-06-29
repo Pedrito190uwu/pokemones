@@ -1,0 +1,76 @@
+<div class="pokedex">
+
+  <div class="pokedex-header">
+    <div class="logo">
+    <img class="logo" src="/src/img/logo.png" alt="">
+    </div>
+
+    <div class="header-actions">
+      <button class="btn-outline">Explorar Pokédex</button>
+      <button class="btn-outline">Favoritos</button>
+    </div>
+  </div>
+
+  <div class="filter-section">
+    <span class="filter-label">Pokémon disponibles</span>
+  </div>
+
+  <div class="featured-card" *ngIf="pokemons.length > 0">
+    <div class="featured-info">
+      <div class="featured-name">
+        #{{ pokemons[0].id }}
+        {{ pokemons[0].name | titlecase }}
+      </div>
+
+      <div class="featured-stats">
+        <span>Experiencia: {{ pokemons[0].base_experience }}</span>
+      </div>
+    </div>
+
+    <img
+      [src]="pokemons[0].sprites.front_default"
+      [alt]="pokemons[0].name"
+      width="120">
+  </div>
+
+  <hr class="section-divider">
+
+  <div class="list-header">
+    <h2>Todos los Pokémon</h2>
+    <div class="count">{{ pokemons.length }} encontrados</div>
+  </div>
+
+  <div class="pokemon-grid">
+
+    <div class="pokemon-item" *ngFor="let pokemon of pokemons">
+
+      <img
+        class="pokemon-image"
+        [src]="pokemon.sprites.front_default"
+        [alt]="pokemon.name">
+
+      <span class="pokemon-name">
+        {{ pokemon.name | titlecase }}
+      </span>
+
+      <div class="pokemon-types">
+
+        <span
+          *ngFor="let ability of pokemon.abilities"
+          class="type-badge">
+
+          {{ ability.ability.name }}
+
+        </span>
+
+      </div>
+
+      <p class="experience">
+        Exp: {{ pokemon.base_experience }}
+      </p>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,1 +1,57 @@
+<nav class="navbar">
+  <div class="logo-container">
+    <img src="assets/img/logo.png" class="logo" alt="Pokémon">
+  </div>
 
+  <ul class="nav-links">
+    <li>
+      <a href="#">
+        <img src="assets/img/home.png" class="icon">
+        Inicio
+      </a>
+    </li>
+
+  </ul>
+</nav>
+
+<div class="contenedor">
+
+    <div class="title">
+        <h2>Todos los Pokémon</h2>
+        <span>{{ pokemons.length }}</span>
+    </div>
+
+    <div class="cards">
+
+        <div class="card" *ngFor="let pokemon of pokemons">
+
+            <div class="number">
+                #{{ pokemon.id }}
+            </div>
+
+
+            <img
+            class="pokemon-img"
+            [src]="pokemon.sprites.other['official-artwork'].front_default"
+            [alt]="pokemon.name">
+
+            <h3>{{ pokemon.name | titlecase }}</h3>
+
+            <div class="types">
+
+                <span
+                *ngFor="let type of pokemon.types"
+                [ngClass]="'type-'+type.type.name"
+                class="type">
+
+                    {{ type.type.name }}
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
